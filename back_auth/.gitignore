@@ -1,0 +1,6 @@
+.env
+# toutes les fichiers qui commencent par .env
+.env.*
+
+node_modules/
+logs/
