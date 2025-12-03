@@ -56,6 +56,7 @@ export async function getProfil(token) {
             //passer le token dans le format qui est attendu par l'api
             'Authorization' : `Bearer ${token}`
         },
+        
     });
 
     const data = await response.json();

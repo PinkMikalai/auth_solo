@@ -23,6 +23,7 @@ export async function authenticate(req, res, next) {
         }
         //???
         req.user = rows[0];
+        
         next();
     } catch (error) {
         error.status=401;

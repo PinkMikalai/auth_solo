@@ -1,6 +1,8 @@
 //importer l'outil dotenv
 import dotenv from 'dotenv';
 
+
+
 dotenv.config();
 
 // lister et verifier les infos necessaires pour demarrer l'app
@@ -10,6 +12,9 @@ for(const key of required) {
         throw new Error(`${key}: manquant dans le fichier .env`);
     }
 }
+
+
+
 
 // recuperer les information de mon fichier .env
 export const env = {
@@ -21,6 +26,7 @@ export const env = {
         password: process.env.DB_PASSWORD ?? '',
         database: process.env.DB_NAME
     },
-    jwtSecret: process.env.JWT_SECRET
+    jwtSecret: process.env.JWT_SECRET,
+    geminiApiKey: process.env.GEMINI_API_KEY
 }
 

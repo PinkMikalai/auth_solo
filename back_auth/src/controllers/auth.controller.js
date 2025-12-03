@@ -8,6 +8,8 @@ import { pool } from '../db/index.js';
 import { env } from '../config/env.js';
 //import des services
 import { register } from '../services/auth.service.js';
+//import de notre service de gemini
+import { test, generateAstronomy, generateMeteo } from '../services/gemini.service.js';
 
 export async function registerController (req, res, next) {
     try {
@@ -61,6 +63,15 @@ export async function loginController (req, res, next) {
 
 //controller profile
 export async function profileController(req, res) {
-    console.log(req.user);
-    res.json({user: req.user});
+//appeler la function qui genere l'astronomie
+    let astroUser = await generateAstronomy(req.user.date_naissance, req.user.lieu_naissance);
+    let meteoUser = await generateMeteo(req.user.lieu_naissance);
+    
+    res.json({
+        user: req.user,
+        astronomy: astroUser,
+        meteo: meteoUser
+        
+    });
+    
 }

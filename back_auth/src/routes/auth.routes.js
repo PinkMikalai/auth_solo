@@ -6,6 +6,10 @@ import {
     loginController,
     profileController
  } from '../controllers/auth.controller.js';
+ //import de notre controller pour les infos generatives de l'utilisateur
+ import { myInfosController } from '../controllers/myInfos.controller.js';
+
+
 //import de notre logique d'authenticate
 import { authenticate } from '../middlewares/auth.middleware.js';
 
@@ -17,5 +21,7 @@ router.post('/register', registerController);
 router.post('/login', loginController);
 //afficher son profil
 router.get('/profil', authenticate, profileController);
+//route pour les infos generatives de l'utilisateur
+router.get('/my-infos', authenticate, myInfosController);
 
 export default router;

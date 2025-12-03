@@ -3,11 +3,14 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getProfil } from "../services/api";
 
+
 function ProfilePage() {
     //hook de navigation
     const navigate = useNavigate();
     //state de stockage
     const [user, setUser] = useState(null);
+    const [astronomy, setAstronomy] = useState(null);
+    const [meteo, setMeteo] = useState(null);
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
@@ -26,7 +29,9 @@ function ProfilePage() {
                 const data = await getProfil(token);
                 
                 setUser(data.user);
-
+                //on stock les données d'astronomie dans le state
+                setAstronomy(data.astronomy); 
+                setMeteo(data.meteo);
             } catch (error) {
                 console.log('erreur', error);
                 setError(error.message);
@@ -58,7 +63,7 @@ function ProfilePage() {
         <div>
             <h2>profile page</h2>
             {user && (
-                <div>
+                <><div>
                     <p>id: {user.id}</p>
                     <p>email: {user.email}</p>
                     <p> date de naissance: {new Date(user.date_naissance).toLocaleDateString()}</p>
@@ -66,6 +71,15 @@ function ProfilePage() {
                     <p>age: {new Date().getFullYear() - new Date(user.date_naissance).getFullYear()}</p>
                     <p>inscrit le: {new Date(user.created_at).toLocaleDateString()}</p>
                  </div>
+                 {/* <div>
+                    <h2>Astronomie:</h2>
+                    <p>astrologie pour aujourd hui: {astronomy}</p>
+                 </div>
+                 <div>
+                    <h2>Meteo:</h2>
+                    <p>meteo pour aujourd hui: {meteo}</p>
+                 </div> */}
+                 </>
              )}
         </div>
     )

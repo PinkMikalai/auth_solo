@@ -4,6 +4,8 @@ import morgan from 'morgan';
 import authRoutes from './routes/auth.routes.js';
 import demoRoutes from './routes/demo.routes.js';
 
+
+
 const app = express();
 
 app.use(cors());
